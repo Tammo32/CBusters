@@ -36,6 +36,9 @@ void game::startNewGame(std::string playerNames[]){
     this->turnTracker = 0;
 }
 
+game::~game() {
+
+}
 void game::setPlayersTurn(int i){
     this->turnTracker = i;
 }
@@ -343,7 +346,7 @@ void game::gamePlayLoop(){
     }
 
 
-    delete playerArr;
+    // delete playerArr;
     delete tileBag;
 
 }

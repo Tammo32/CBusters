@@ -3,7 +3,7 @@
 #define ASSIGN1_TILECODES_H
 
 // Colours
-#define RED    'R'
+#define RED    'R' 
 #define ORANGE 'O'
 #define YELLOW 'Y'
 #define GREEN  'G'
@@ -17,5 +17,14 @@
 #define SQUARE    4
 #define STAR_6    5
 #define CLOVER    6
+
+// DEFINE COLOUR CODES FOR TILES
+#define RESET_COLOUR     "\033[0m"          // Reset back to default
+#define RED_COLOUR       "\033[31m"         // Red
+#define ORANGE_COLOUR    "\033[38;5;166m"   // Orange
+#define YELLOW_COLOUR    "\033[33m"         // Yellow
+#define GREEN_COLOUR     "\033[32m"         // Green
+#define BLUE_COLOUR      "\033[34m"         // Blue
+#define PURPLE_COLOUR    "\033[38;5;128m"   // Purple
 
 #endif // ASSIGN1_TILECODES_H
