@@ -51,6 +51,9 @@ public:
 
     void score(int row, int col, char colour, int shape);
 
+    //for setting tile display colour - ENHANCEMENT
+    void setDisplayColour(char colour);
+
     //checks if row & col coordinates are valid
     bool withinBoard(int row, int col);
 
@@ -66,6 +69,8 @@ public:
     bool checkColour(char colour);
 
     bool checkShape(int shape);
+
+    bool colouredTilesEnabled();
 private:
     //LinkedList holding all game tiles not in hand/play.
     LinkedList* tileBag;

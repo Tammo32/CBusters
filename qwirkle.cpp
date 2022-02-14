@@ -43,19 +43,8 @@ void displayCredits() {
       std::cout << " 2. Load Game" << std::endl;
       std::cout << " 3. Credits (Show student information)" << std::endl;
       std::cout << " 4. Quit" << std::endl;
-      
-      std::cout << RED << "hello world" << std::endl;
-
-
-      std::cout << RED_COLOUR << "hello world" << RESET_COLOUR << std::endl;
-      std::cout << ORANGE_COLOUR << "hello world" << RESET_COLOUR << std::endl;
-      std::cout << YELLOW_COLOUR << "hello world" << RESET_COLOUR << std::endl;
-      std::cout << GREEN_COLOUR << "hello world" << RESET_COLOUR << std::endl;
-      std::cout << BLUE_COLOUR << "hello world" << RESET_COLOUR << std::endl;
-      std::cout << PURPLE_COLOUR << "hello world" << RESET_COLOUR << std::endl;
-
       std::cout << ">";
-
+      
       std::cin >> menuSelection;
       std::cin.ignore();
 

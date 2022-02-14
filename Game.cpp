@@ -14,8 +14,10 @@
 //constructor for game object
 game::game(){
     // setup a new game empty board.
+    tileBag = new LinkedList(); // this was somehow removed in Milestone 2 submission
     setBoardSize(26);
     setupGameboard();
+    
 }
     
 //intialises new game with inputed player names
@@ -288,9 +290,16 @@ void game::gamePlayLoop(){
         std::cout << playerArr[getPlayersTurn()]->getPlayerName() << "'s Hand:" << std::endl;  
 
         //display Players hand
+        // ENHANCEMENT - colour printing on enabled
         for(int i = 0; i < playerArr[getPlayersTurn()]->getHand()->getLength(); i++){
-            std::cout << playerArr[getPlayersTurn()]->getHand()->getTileAtIndex(i)->getColour() 
+
+            //set display colour depending on tile - ENHANCEMENT
+            if(colouredTilesEnabled()) {
+                setDisplayColour(playerArr[getPlayersTurn()]->getHand()->getTileAtIndex(i)->getColour());
+            }
+            std::cout << playerArr[getPlayersTurn()]->getHand()->getTileAtIndex(i)->getColour()
                       << playerArr[getPlayersTurn()]->getHand()->getTileAtIndex(i)->getShape() 
+                      << RESET_COLOUR // reset colour print out
                       << " ";
         }
         std::cout << std::endl;
@@ -550,14 +559,19 @@ void game::displayBoard(){
                     std::cout << "  ";
                 } else{
                     //~~~~need to implement displaying of tile color and shape.~~~~
+                    //set display colour depending on tile - ENHANCEMENT
+                    if(colouredTilesEnabled()) {
+                        setDisplayColour(map[row][col]->colour);
+                    }
                     std::cout << map[row][col]->colour << map[row][col]->shape;
+                    //reset tile display colour
+                    std::cout << RESET_COLOUR;
                 }
                 std::cout << "|";            
         }
         std::cout << std::endl;
     }
 }
-
 
       //   CHECKING METHODS   //
       //----------------------//
@@ -727,4 +741,20 @@ bool game::checkShape(int shape){
     else {
         return false;
     }
+}
+
+// ****ENHANCEMENTS****
+//sets the display colour depending on tile colour
+void game::setDisplayColour(char colour){
+    if(colour == 'R') {std::cout << RED_COLOUR;}
+    if(colour == 'O') {std::cout << ORANGE_COLOUR;}
+    if(colour == 'Y') {std::cout << YELLOW_COLOUR;}
+    if(colour == 'G') {std::cout << GREEN_COLOUR;}
+    if(colour == 'B') {std::cout << BLUE_COLOUR;}
+    if(colour == 'P') {std::cout << PURPLE_COLOUR;}
+}
+
+// ****ENHANCEMENT TOGGLES****
+bool game::colouredTilesEnabled() { //TODO
+    return true;
 }
