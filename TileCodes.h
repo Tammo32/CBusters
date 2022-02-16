@@ -27,4 +27,12 @@
 #define BLUE_COLOUR      "\033[34m"         // Blue
 #define PURPLE_COLOUR    "\033[38;5;128m"   // Purple
 
+// DEFINE UNICODE SHAPES 
+#define CIRCLE_SYM    1
+#define STAR_4_SYM    2
+#define DIAMOND_SYM   3
+#define SQUARE_SYM    4
+#define STAR_6_SYM    5
+#define CLOVER_SYM    6
+
 #endif // ASSIGN1_TILECODES_H

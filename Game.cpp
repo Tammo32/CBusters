@@ -274,6 +274,9 @@ void game::gamePlayLoop(){
     bool gameEnd = false;
     bool exitConditionMet = false;
 
+    colouredTilesTracker = 1; //enabled by default
+    unicodeSymbolsTracker = 1; //enabled by default
+
     //gameplay loop
     while (exitConditionMet == false && !std::cin.eof() && gameEnd == false)
     {
@@ -330,6 +333,11 @@ void game::gamePlayLoop(){
         else if (menuInput == "exit"){
             std::cout << "Goodbye" << std::endl;
             exitConditionMet = true;
+        }
+        //ENHANCEMENTS MENU
+        //save game
+        else if (menuInput == "enhancements"){
+            enhancementToggles();
         }
         else
         {
@@ -563,7 +571,12 @@ void game::displayBoard(){
                     if(colouredTilesEnabled()) {
                         setDisplayColour(map[row][col]->colour);
                     }
-                    std::cout << map[row][col]->colour << map[row][col]->shape;
+                    std::cout << map[row][col]->colour;
+                    if(!unicodeSymbolsEnabled()) { //unicode symbols disabled
+                        std::cout << map[row][col]->shape;
+                    } else { // unicode symbols enabled
+                        std::cout << map[row][col]->shape;
+                    }
                     //reset tile display colour
                     std::cout << RESET_COLOUR;
                 }
@@ -755,6 +768,67 @@ void game::setDisplayColour(char colour){
 }
 
 // ****ENHANCEMENT TOGGLES****
-bool game::colouredTilesEnabled() { //TODO
-    return true;
+void game::enhancementToggles() {
+   int enhancementSelection = 0;
+
+   std::cout << "ENHANCEMENTS" << std::endl;
+   std::cout << "------------" << std::endl;
+   std::cout << " 1. Coloured tiles" << std::endl;
+   std::cout << " 2. Unicode/Emoji symbols" << std::endl;
+   std::cout << " 3. Go Back..." << std::endl;
+   std::cout << ">";
+
+   std::cin >> enhancementSelection;
+   std::cin.ignore();
+
+   switch (enhancementSelection) {
+      case 1: { // Coloured tiles
+        colouredTilesTracker++;
+        if(colouredTilesEnabled()) { 
+            std::cout << "Coloured tiles enabled!" << colouredTilesTracker;
+        } else {
+            std::cout << "Coloured tiles disabled!" << colouredTilesTracker;
+        }
+        break;
+      }
+      case 2: { // Unicode/Emoji symbols
+        unicodeSymbolsTracker++;
+        if(colouredTilesEnabled()) { 
+            std::cout << "Coloured tiles enabled!" << colouredTilesTracker;
+        } else {
+            std::cout << "Coloured tiles disabled!" << colouredTilesTracker;
+        }
+        break;
+      }
+      case 3: { // Go Back
+        break;
+      }
+      default: {
+        if (!std::cin.eof()) {
+            std::cout << "Invalid Input" << std::endl;
+            std::cin.clear();
+            // ignore input if non-valid
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+        }
+        break;
+      }
+   }
+   std::cout << std::endl; // for console legibility
+}
+
+// ****ENHANCEMENT TOGGLE CHECKS****
+bool game::colouredTilesEnabled() {
+    if(colouredTilesTracker%2) { // if even then enabled
+        return true;
+    } else { // if odd then disabled
+        return false;
+    }
+}
+
+bool game::unicodeSymbolsEnabled() { 
+    if(unicodeSymbolsTracker%2) { // if even then enabled
+        return true;
+    } else { // if odd then disabled
+        return false;
+    }
 }

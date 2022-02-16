@@ -70,7 +70,12 @@ public:
 
     bool checkShape(int shape);
 
+    void enhancementToggles();
+
     bool colouredTilesEnabled();
+
+    bool unicodeSymbolsEnabled();
+
 private:
     //LinkedList holding all game tiles not in hand/play.
     LinkedList* tileBag;
@@ -86,4 +91,8 @@ private:
 
     //the gameboard
     std::vector<std::vector<Tile*>> map;
+
+    //tracks toggles (use modulus for on/off)
+    int colouredTilesTracker; 
+    int unicodeSymbolsTracker; 
 };

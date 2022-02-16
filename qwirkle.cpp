@@ -8,6 +8,8 @@
 
 #define EXIT_SUCCESS    0
 
+
+
 void displayCredits() {
    std::string names[4] = {"Michael Tamasauskas", "Matthew Rosin",  
                            "Seth Underdown", "Varshan Shankar"};
@@ -28,9 +30,11 @@ void displayCredits() {
    std::cout << "----------------------------------" << std::endl;
 }
 
- int main(int argc, char** argv) {
+int main(int argc, char** argv) {
    bool inGame = true;
    int menuSelection = 0;
+    
+   
 
    // Print welcome message
    std::cout << "Welcome to Qwirkle!" << std::endl;
@@ -45,6 +49,22 @@ void displayCredits() {
       std::cout << " 4. Quit" << std::endl;
       std::cout << ">";
       
+      // TESTING GROUND
+      std::string b = "\u2b24";
+      std::string d = "\u2726";
+      std::string f = "\u25c6";
+      std::string h = "\u25a0";
+      std::string i = "\u2737";
+      std::string k = "\u2618";
+
+      std::cout << b << " , ";
+      std::cout << d << " , ";
+      std::cout << f << " , ";
+      std::cout << h << " , ";
+      std::cout << i << " , ";
+      std::cout << k << std::endl;
+
+
       std::cin >> menuSelection;
       std::cin.ignore();
 
