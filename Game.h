@@ -76,6 +76,8 @@ public:
 
     bool unicodeSymbolsEnabled();
 
+    void helpOutput();
+
 private:
     //LinkedList holding all game tiles not in hand/play.
     LinkedList* tileBag;

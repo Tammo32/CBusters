@@ -335,9 +335,12 @@ void game::gamePlayLoop(){
             exitConditionMet = true;
         }
         //ENHANCEMENTS MENU
-        //save game
         else if (menuInput == "enhancements"){
             enhancementToggles();
+        }
+        //help commands
+        else if (menuInput == "help"){
+            helpOutput();
         }
         else
         {
@@ -757,6 +760,27 @@ bool game::checkShape(int shape){
 }
 
 // ****ENHANCEMENTS****
+//help command output
+void game::helpOutput() {
+    std::cout << "HELP!" << std::endl;
+    std::cout << "-----" << std::endl;
+    std::cout << "During your turn, you may use the following commands:" << std::endl;
+    std::cout << " place <tile in hand> at <board location>" << std::endl;
+    std::cout << "  (eg. 'place A5 at E3' - standard turn)" << std::endl;
+    std::cout << " replace <tile in hand>" << std::endl;
+    std::cout << "  (eg. 'replace A5' - replaces that tile with one from the tilebag)" << std::endl;
+    std::cout << " save" << std::endl;
+    std::cout << "  (allows the user to save game to a file)" << std::endl;
+    std::cout << " enhancements" << std::endl;
+    std::cout << "  (displays the enhancements menu and toggles for optional enhancements)" << std::endl;
+    std::cout << " help" << std::endl;
+    std::cout << "  (displays this help output)" << std::endl;
+    std::cout << " exit" << std::endl;
+    std::cout << "  (quits current game and exits to main menu," 
+                 " from main menu quits game entirely)" << std::endl;
+    std::cout << std::endl;
+}
+
 //sets the display colour depending on tile colour
 void game::setDisplayColour(char colour){
     if(colour == 'R') {std::cout << RED_COLOUR;}
@@ -773,34 +797,40 @@ void game::enhancementToggles() {
 
    std::cout << "ENHANCEMENTS" << std::endl;
    std::cout << "------------" << std::endl;
-   std::cout << " 1. Coloured tiles" << std::endl;
-   std::cout << " 2. Unicode/Emoji symbols" << std::endl;
-   std::cout << " 3. Go Back..." << std::endl;
+   std::cout << " 1. Help (HOW TO)" << std::endl;
+   std::cout << " 2. Coloured tiles (ON/OFF)" << std::endl;
+   std::cout << " 3. Unicode/Emoji symbols (ON/OFF)" << std::endl;
+   std::cout << " 4. Go Back..." << std::endl;
    std::cout << ">";
 
    std::cin >> enhancementSelection;
    std::cin.ignore();
 
    switch (enhancementSelection) {
-      case 1: { // Coloured tiles
+      case 1: { // Help Description
+        std::cout << "ALWAYS ON!" << std::endl;
+        std::cout << "To use: Type 'help' during a game for a list of commands." << std::endl;
+        break;
+      }
+      case 2: { // Coloured tiles
         colouredTilesTracker++;
         if(colouredTilesEnabled()) { 
-            std::cout << "Coloured tiles enabled!" << colouredTilesTracker;
+            std::cout << "Coloured tiles enabled!" << colouredTilesTracker << std::endl;
         } else {
-            std::cout << "Coloured tiles disabled!" << colouredTilesTracker;
+            std::cout << "Coloured tiles disabled!" << colouredTilesTracker << std::endl;
         }
         break;
       }
-      case 2: { // Unicode/Emoji symbols
+      case 3: { // Unicode/Emoji symbols
         unicodeSymbolsTracker++;
         if(colouredTilesEnabled()) { 
-            std::cout << "Coloured tiles enabled!" << colouredTilesTracker;
+            std::cout << "Unicode symbols enabled!" << colouredTilesTracker << std::endl;
         } else {
-            std::cout << "Coloured tiles disabled!" << colouredTilesTracker;
+            std::cout << "Unicode symbols disabled!" << colouredTilesTracker << std::endl;
         }
         break;
       }
-      case 3: { // Go Back
+      case 4: { // Go Back
         break;
       }
       default: {

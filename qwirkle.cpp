@@ -39,6 +39,7 @@ int main(int argc, char** argv) {
    // Print welcome message
    std::cout << "Welcome to Qwirkle!" << std::endl;
    std::cout << "-------------------" << std::endl;
+   std::cout << "    [ENHANCEMENTS ENABLED BY DEFAULT]" << std::endl;
 
    while (inGame != false && !std::cin.eof()) {
       std::cout << "Menu" << std::endl;
@@ -47,24 +48,9 @@ int main(int argc, char** argv) {
       std::cout << " 2. Load Game" << std::endl;
       std::cout << " 3. Credits (Show student information)" << std::endl;
       std::cout << " 4. Quit" << std::endl;
+      
       std::cout << ">";
       
-      // TESTING GROUND
-      std::string b = "\u2b24";
-      std::string d = "\u2726";
-      std::string f = "\u25c6";
-      std::string h = "\u25a0";
-      std::string i = "\u2737";
-      std::string k = "\u2618";
-
-      std::cout << b << " , ";
-      std::cout << d << " , ";
-      std::cout << f << " , ";
-      std::cout << h << " , ";
-      std::cout << i << " , ";
-      std::cout << k << std::endl;
-
-
       std::cin >> menuSelection;
       std::cin.ignore();
 

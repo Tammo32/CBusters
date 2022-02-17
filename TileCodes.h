@@ -28,11 +28,11 @@
 #define PURPLE_COLOUR    "\033[38;5;128m"   // Purple
 
 // DEFINE UNICODE SHAPES 
-#define CIRCLE_SYM    1
-#define STAR_4_SYM    2
-#define DIAMOND_SYM   3
-#define SQUARE_SYM    4
-#define STAR_6_SYM    5
-#define CLOVER_SYM    6
+#define CIRCLE_SYM    "\u2b24"
+#define STAR_4_SYM    "\u2726"
+#define DIAMOND_SYM   "\u25c6"
+#define SQUARE_SYM    "\u25a0"
+#define STAR_6_SYM    "\u2737"
+#define CLOVER_SYM    "\u2618"
 
 #endif // ASSIGN1_TILECODES_H
