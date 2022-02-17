@@ -300,12 +300,27 @@ void game::gamePlayLoop(){
             if(colouredTilesEnabled()) {
                 setDisplayColour(playerArr[getPlayersTurn()]->getHand()->getTileAtIndex(i)->getColour());
             }
-            std::cout << playerArr[getPlayersTurn()]->getHand()->getTileAtIndex(i)->getColour()
-                      << playerArr[getPlayersTurn()]->getHand()->getTileAtIndex(i)->getShape() 
-                      << RESET_COLOUR // reset colour print out
+            std::cout << playerArr[getPlayersTurn()]->getHand()->getTileAtIndex(i)->getColour();
+            if(!unicodeSymbolsEnabled()) { //unicode symbols disabled
+                std::cout << playerArr[getPlayersTurn()]->getHand()->getTileAtIndex(i)->getShape();
+            } else { //unicodce symbols enabled
+                setUnicodeSymbol(playerArr[getPlayersTurn()]->getHand()->getTileAtIndex(i)->getShape());
+            }
+            std::cout << RESET_COLOUR // reset colour print out
                       << " ";
         }
         std::cout << std::endl;
+
+        //if unicode symbols enabled, provide assistance on what to input
+        if(unicodeSymbolsEnabled()) {
+            std::cout << "**To input a symbol: ";
+            std::cout << CIRCLE_SYM << " = " << CIRCLE << ", "
+                      << STAR_4_SYM << " = " << STAR_4 << ", "
+                      << DIAMOND_SYM << " = " << DIAMOND << ", "
+                      << SQUARE_SYM << " = " << SQUARE << ", "
+                      << STAR_6_SYM << " = " << STAR_6 << ", "
+                      << CLOVER_SYM << " = " << CLOVER << std::endl;
+        }
 
         //take input for users turn
         std::cout << "> ";
@@ -578,7 +593,7 @@ void game::displayBoard(){
                     if(!unicodeSymbolsEnabled()) { //unicode symbols disabled
                         std::cout << map[row][col]->shape;
                     } else { // unicode symbols enabled
-                        std::cout << map[row][col]->shape;
+                        setUnicodeSymbol(map[row][col]->shape);
                     }
                     //reset tile display colour
                     std::cout << RESET_COLOUR;
@@ -766,29 +781,39 @@ void game::helpOutput() {
     std::cout << "-----" << std::endl;
     std::cout << "During your turn, you may use the following commands:" << std::endl;
     std::cout << " place <tile in hand> at <board location>" << std::endl;
-    std::cout << "  (eg. 'place A5 at E3' - standard turn)" << std::endl;
+    std::cout << "  *(eg. 'place A5 at E3' - standard turn)" << std::endl;
     std::cout << " replace <tile in hand>" << std::endl;
-    std::cout << "  (eg. 'replace A5' - replaces that tile with one from the tilebag)" << std::endl;
+    std::cout << "  *(eg. 'replace A5' - replaces that tile with one from the tilebag)" << std::endl;
     std::cout << " save" << std::endl;
-    std::cout << "  (allows the user to save game to a file)" << std::endl;
+    std::cout << "  *(allows the user to save game to a file)" << std::endl;
     std::cout << " enhancements" << std::endl;
-    std::cout << "  (displays the enhancements menu and toggles for optional enhancements)" << std::endl;
+    std::cout << "  *(displays the enhancements menu and toggles for optional enhancements)" << std::endl;
     std::cout << " help" << std::endl;
-    std::cout << "  (displays this help output)" << std::endl;
+    std::cout << "  *(displays this help output)" << std::endl;
     std::cout << " exit" << std::endl;
-    std::cout << "  (quits current game and exits to main menu," 
+    std::cout << "  *(quits current game and exits to main menu," 
                  " from main menu quits game entirely)" << std::endl;
     std::cout << std::endl;
 }
 
 //sets the display colour depending on tile colour
 void game::setDisplayColour(char colour){
-    if(colour == 'R') {std::cout << RED_COLOUR;}
-    if(colour == 'O') {std::cout << ORANGE_COLOUR;}
-    if(colour == 'Y') {std::cout << YELLOW_COLOUR;}
-    if(colour == 'G') {std::cout << GREEN_COLOUR;}
-    if(colour == 'B') {std::cout << BLUE_COLOUR;}
-    if(colour == 'P') {std::cout << PURPLE_COLOUR;}
+    if(colour == RED) {std::cout << RED_COLOUR;}
+    if(colour == ORANGE) {std::cout << ORANGE_COLOUR;}
+    if(colour == YELLOW) {std::cout << YELLOW_COLOUR;}
+    if(colour == GREEN) {std::cout << GREEN_COLOUR;}
+    if(colour == BLUE) {std::cout << BLUE_COLOUR;}
+    if(colour == PURPLE) {std::cout << PURPLE_COLOUR;}
+}
+
+//sets the display colour depending on tile colour
+void game::setUnicodeSymbol(int shape){
+    if(shape == CIRCLE) {std::cout << CIRCLE_SYM;}
+    if(shape == STAR_4) {std::cout << STAR_4_SYM;}
+    if(shape == DIAMOND) {std::cout << DIAMOND_SYM;}
+    if(shape == SQUARE) {std::cout << SQUARE_SYM;}
+    if(shape == STAR_6) {std::cout << STAR_6_SYM;}
+    if(shape == CLOVER) {std::cout << CLOVER_SYM;}
 }
 
 // ****ENHANCEMENT TOGGLES****
@@ -815,18 +840,18 @@ void game::enhancementToggles() {
       case 2: { // Coloured tiles
         colouredTilesTracker++;
         if(colouredTilesEnabled()) { 
-            std::cout << "Coloured tiles enabled!" << colouredTilesTracker << std::endl;
+            std::cout << "Coloured tiles enabled!" << std::endl;
         } else {
-            std::cout << "Coloured tiles disabled!" << colouredTilesTracker << std::endl;
+            std::cout << "Coloured tiles disabled!" << std::endl;
         }
         break;
       }
       case 3: { // Unicode/Emoji symbols
         unicodeSymbolsTracker++;
-        if(colouredTilesEnabled()) { 
-            std::cout << "Unicode symbols enabled!" << colouredTilesTracker << std::endl;
+        if(unicodeSymbolsEnabled()) { 
+            std::cout << "Unicode symbols enabled!" << std::endl;
         } else {
-            std::cout << "Unicode symbols disabled!" << colouredTilesTracker << std::endl;
+            std::cout << "Unicode symbols disabled!"<< std::endl;
         }
         break;
       }
