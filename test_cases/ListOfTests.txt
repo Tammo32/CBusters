@@ -1,5 +1,5 @@
 console commands used for testing.
-1. ./qwirkle < ./test_cases/test0X.input >> ./test_cases/test0X.gameout
+1. ./qwirkle < ./test_cases/test0X.input > ./test_cases/test0X.gameout
 2. diff -w ./test_cases/test0X.output ./test_cases/test0X.gameout
 3. diff -w -y ./test_cases/test0X.expsave ./test_cases/test0Xgame.save
 
