@@ -34,8 +34,6 @@ int main(int argc, char** argv) {
    bool inGame = true;
    int menuSelection = 0;
     
-   
-
    // Print welcome message
    std::cout << "Welcome to Qwirkle!" << std::endl;
    std::cout << "-------------------" << std::endl;
